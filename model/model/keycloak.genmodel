@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/hu.blackbelt.judo.meta.keycloak.model/src-gen"
+    modelPluginID="hu.blackbelt.judo.meta.keycloak.model" modelName="Keycloak" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    testsDirectory="" importerID="org.eclipse.emf.importer.ecore" featureDelegation="Dynamic"
+    complianceLevel="8.0" copyrightFields="false" operationReflection="true" importOrganizing="true"
+    oSGiCompatible="true">
+  <foreignModel>keycloak.ecore</foreignModel>
+  <genPackages prefix="Keycloak" basePackage="hu.blackbelt.judo.meta" resource="XMI"
+      disposableProviderFactory="true" dataTypeConverters="true" extensibleProviderFactory="true"
+      childCreationExtenders="true" fileExtensions="keycloak" ecorePackage="keycloak.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="keycloak.ecore#//AccessType">
+      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/CONFIDENTIAL"/>
+      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/BEARER_ONLY"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="keycloak.ecore#//CredentialType">
+      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//CredentialType/PASSWORD"/>
+    </genEnums>
+    <genClasses ecoreClass="keycloak.ecore#//Realm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/managed"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/actors"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/loginWithEmailAllowed"/>
+    </genClasses>
+    <genClasses ecoreClass="keycloak.ecore#//Client">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/secret"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/directAccessGrantsEnabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/redirectUris"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/accessType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/users"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/mappers"/>
+    </genClasses>
+    <genClasses ecoreClass="keycloak.ecore#//User">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/email"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/firstName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/lastName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//User/credentials"/>
+    </genClasses>
+    <genClasses ecoreClass="keycloak.ecore#//UserCredential">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/temporary"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/value"/>
+    </genClasses>
+    <genClasses ecoreClass="keycloak.ecore#//Mapper">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Mapper/tokenClaimName"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

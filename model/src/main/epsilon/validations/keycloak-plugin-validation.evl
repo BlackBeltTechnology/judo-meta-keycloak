@@ -1,0 +1,5 @@
+import "keycloak.evl";
+
+pre {
+  var keycloakUtils = new Native("hu.blackbelt.judo.meta.keycloak.runtime.KeycloakUtils")(KEYCLOAK.resource.resourceSet, false);
+}

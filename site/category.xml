@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description>
+      To install these features, point Eclipse at this site.
+   </description>
+   <feature id="hu.blackbelt.judo.meta.keycloak.feature">
+      <category name="keycloak"/>
+   </feature>
+   <category-def name="keycloak" label="Judo Keycloak Model">
+      <description>
+         Judo Keycloak Model Update Site: contains all features in this build.
+      </description>
+   </category-def>
+
+   <feature id="hu.blackbelt.judo.meta.keycloak.feature.source">
+      <category name="keycloak_source"/>
+   </feature>
+   <category-def name="keycloak_source" label="Judo Keycloak Model Source">
+      <description>
+         Judo Keycloak Model source code.
+      </description>
+   </category-def>
+
+   <!-- This is currently ignored by Tycho, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=453708 -->
+   <!-- The tycho plugin 1.5.0 will fix it -->
+   <!--
+   <repository-reference location="https://download.eclipse.org/epsilon/updates/1.5/" enabled="true" />
+   <repository-reference location="https://nexus.judo.technology/repository/p2/epsilon-runtime-eclipse/1.2.5.20201022_015722_171aff5_develop" enabled="true" />
+   -->
+</site>

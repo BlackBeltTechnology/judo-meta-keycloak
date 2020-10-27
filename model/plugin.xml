@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+<plugin>
+    <extension
+            point="org.eclipse.epsilon.evl.emf.validation">
+        <constraintsBinding
+                constraints="validations/keycloak-plugin-validation.evl"
+                modelName="KEYCLOAK"
+                namespaceURI="http://www.keycloak.org/xml/ns/dbchangelog">
+            <!-- All packages have to register
+            <additionalNamespaceURI
+                    namespaceURI="http://www.keycloak.org/xml/ns/dbchangelog/subpackage">
+            </additionalNamespaceURI>
+            -->
+        </constraintsBinding>
+    </extension>
+    <extension
+            point="org.eclipse.ui.ide.markerResolution">
+        <markerResolutionGenerator
+                class="org.eclipse.epsilon.evl.emf.validation.EvlMarkerResolutionGenerator"
+                markerType="org.eclipse.emf.ecore.diagnostic">
+        </markerResolutionGenerator>
+        <markerResolutionGenerator
+                class="org.eclipse.epsilon.evl.emf.validation.EvlMarkerResolutionGenerator"
+                markerType="org.eclipse.emf.ecoretools.diagram.diagnostic">
+        </markerResolutionGenerator>
+    </extension>
+    <extension
+            point="org.eclipse.epsilon.common.dt.tool">
+        <tool
+                class="hu.blackbelt.judo.meta.keycloak.runtime.KeycloakUtils"
+                defaultName="keycloakUtils"/>
+    </extension>
+
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated keycloak -->
+      <package
+            uri="http://blackbelt.hu/judo/meta/keycloak"
+            class="hu.blackbelt.judo.meta.keycloak.KeycloakPackage"
+            genModel="model/keycloak.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated keycloak -->
+      <parser
+            type="keycloak"
+            class="hu.blackbelt.judo.meta.keycloak.util.KeycloakResourceFactoryImpl"/>
+   </extension>
+</plugin>
