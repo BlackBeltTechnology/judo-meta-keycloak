@@ -10,7 +10,7 @@
         <details key="documentation" value="Name of realm. It must be unique in a given Keycloak instance."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="actors" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="clients" upperBound="-1"
         eType="#//Client" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="enabled" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true">
@@ -72,7 +72,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="userManager" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Users are managed by the given client, true if users are managed by JUDO application (create/update/delete operations are forwarded to Keycloak too)."/>
+        <details key="documentation" value="Users are managed by the given client, create/update/delete operations are forwarded to Keycloak."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

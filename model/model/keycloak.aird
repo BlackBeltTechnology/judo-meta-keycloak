@@ -5,7 +5,7 @@
     <semanticResources>keycloak.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_XXVcYBhDEeuRBvqv_X1WHw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="bf50fa6e-425a-41cb-9e7b-8ccf502d374f">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="fbb3adcc-9e74-4d3e-bf06-d14ea93e71b5">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="keycloak.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -366,9 +366,9 @@
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_N67W4BhEEeuRBvqv_X1WHw" name="[0..*] actors" sourceNode="_aYVIMBhDEeuRBvqv_X1WHw" targetNode="_DkVWgBhEEeuRBvqv_X1WHw">
-      <target xmi:type="ecore:EReference" href="keycloak.ecore#//Realm/actors"/>
-      <semanticElements xmi:type="ecore:EReference" href="keycloak.ecore#//Realm/actors"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_N67W4BhEEeuRBvqv_X1WHw" name="[0..*] clients" sourceNode="_aYVIMBhDEeuRBvqv_X1WHw" targetNode="_DkVWgBhEEeuRBvqv_X1WHw">
+      <target xmi:type="ecore:EReference" href="keycloak.ecore#//Realm/clients"/>
+      <semanticElements xmi:type="ecore:EReference" href="keycloak.ecore#//Realm/clients"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_N7CEkBhEEeuRBvqv_X1WHw" description="_N69zIBhEEeuRBvqv_X1WHw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_N7DSsBhEEeuRBvqv_X1WHw" showIcon="false">
           <customFeatures>labelSize</customFeatures>

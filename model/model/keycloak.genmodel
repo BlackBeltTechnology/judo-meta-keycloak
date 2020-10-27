@@ -19,7 +19,7 @@
     </genEnums>
     <genClasses ecoreClass="keycloak.ecore#//Realm">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/actors"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/clients"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/enabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/loginWithEmailAllowed"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/users"/>
