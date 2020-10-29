@@ -5,7 +5,7 @@
     <semanticResources>keycloak.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_XXVcYBhDEeuRBvqv_X1WHw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="c5a79e6c-2515-49a4-8322-4a91106158ba">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="1cc22380-19a0-41a0-8aac-caa336e4f503">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="keycloak.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -87,9 +87,9 @@
               <styles xmi:type="notation:FontStyle" xmi:id="_Vtg3gRhGEeuRBvqv_X1WHw" fontColor="2697711" fontName="Noto Sans" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_Vtg3ghhGEeuRBvqv_X1WHw"/>
             </children>
-            <children xmi:type="notation:Node" xmi:id="_9MBRIBhlEeuRBvqv_X1WHw" type="3010" element="_fPENoBhDEeuRBvqv_X1WHw">
-              <styles xmi:type="notation:FontStyle" xmi:id="_9MBRIRhlEeuRBvqv_X1WHw" fontName="Noto Sans" fontHeight="8" bold="true"/>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_9MBRIhhlEeuRBvqv_X1WHw"/>
+            <children xmi:type="notation:Node" xmi:id="_tqfcABodEeu5V5zjKHSMWg" type="3010" element="_tqYHQBodEeu5V5zjKHSMWg">
+              <styles xmi:type="notation:FontStyle" xmi:id="_tqfcARodEeu5V5zjKHSMWg" fontColor="2697711" fontName="Noto Sans" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_tqfcAhodEeu5V5zjKHSMWg"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_DkcrQhhEEeuRBvqv_X1WHw"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_DkcrQxhEEeuRBvqv_X1WHw"/>
@@ -242,12 +242,6 @@
             <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='dark_blue']"/>
           </endLabelStyleDescription>
         </computedStyleDescriptions>
-        <computedStyleDescriptions xmi:type="style:BundledImageDescription" xmi:id="_nyv_0BoNEeu5V5zjKHSMWg" labelExpression="service:render" labelAlignment="LEFT" tooltipExpression="service:renderTooltip" sizeComputationExpression="1">
-          <borderColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <labelFormat>bold</labelFormat>
-          <labelColor xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-          <color xmi:type="description:SystemColor" href="environment:/viewpoint#//@systemColors/@entries[name='black']"/>
-        </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
     <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_aYVIMBhDEeuRBvqv_X1WHw" name="Realm" tooltipText="" outgoingEdges="_N67W4BhEEeuRBvqv_X1WHw _xPOjRhhKEeuRBvqv_X1WHw" width="12" height="10">
@@ -268,9 +262,9 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_aYeSIBhDEeuRBvqv_X1WHw" name="name : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="keycloak.ecore#//Realm/name"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="keycloak.ecore#//Realm/name"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_aYeSIBhDEeuRBvqv_X1WHw" name="realm : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="keycloak.ecore#//Realm/realm"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="keycloak.ecore#//Realm/realm"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_mOtsJxoLEeu5V5zjKHSMWg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
@@ -299,7 +293,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_6udRUhoMEeu5V5zjKHSMWg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_vO08kxodEeu5V5zjKHSMWg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -375,11 +369,11 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_fPENoBhDEeuRBvqv_X1WHw" name="_userManager : EBoolean = true" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tqYHQBodEeu5V5zjKHSMWg" name="_userManager : EBooleanObject" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="keycloak.ecore#//Client/_userManager"/>
         <semanticElements xmi:type="ecore:EAttribute" href="keycloak.ecore#//Client/_userManager"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_nyv_0hoNEeu5V5zjKHSMWg" labelAlignment="LEFT" description="_nyv_0BoNEeu5V5zjKHSMWg">
-          <labelFormat>bold</labelFormat>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_vO2KtxodEeu5V5zjKHSMWg" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
