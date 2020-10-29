@@ -9,15 +9,8 @@
   <genPackages prefix="Keycloak" basePackage="hu.blackbelt.judo.meta" resource="XMI"
       disposableProviderFactory="true" dataTypeConverters="true" extensibleProviderFactory="true"
       childCreationExtenders="true" fileExtensions="keycloak" ecorePackage="keycloak.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="keycloak.ecore#//AccessType">
-      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/CONFIDENTIAL"/>
-      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/PUBLIC"/>
-      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//AccessType/BEARER_ONLY"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="keycloak.ecore#//CredentialType">
-      <genEnumLiterals ecoreEnumLiteral="keycloak.ecore#//CredentialType/PASSWORD"/>
-    </genEnums>
     <genClasses ecoreClass="keycloak.ecore#//Realm">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/id"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/clients"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Realm/enabled"/>
@@ -25,14 +18,17 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Realm/users"/>
     </genClasses>
     <genClasses ecoreClass="keycloak.ecore#//Client">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/clientId"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/secret"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/enabled"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/publicClient"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/bearerOnly"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/directAccessGrantsEnabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/redirectUris"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/accessType"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/mappers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/userManager"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/_userManager"/>
     </genClasses>
     <genClasses ecoreClass="keycloak.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/username"/>
@@ -41,6 +37,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/firstName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/lastName"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//User/credentials"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/requiredActions"/>
     </genClasses>
     <genClasses ecoreClass="keycloak.ecore#//UserCredential">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/type"/>
