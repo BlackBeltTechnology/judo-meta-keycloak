@@ -28,7 +28,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/directAccessGrantsEnabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/redirectUris"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/mappers"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/_userManager"/>
     </genClasses>
     <genClasses ecoreClass="keycloak.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/username"/>
