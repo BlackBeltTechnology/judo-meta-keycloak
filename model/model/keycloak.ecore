@@ -64,8 +64,8 @@
         <details key="documentation" value="Valid URI pattern a browser can redirect to after a successful login or logout. Simple wildcards are allowed such as 'http://example.com/*'. Relative path can be specified too such as /my/relative/path/*. Relative paths are relative to the client root URL, or if none is specified the auth server root URL is used. For SAML, you must set valid URI patterns if you are relying on the consumer service URL embedded with the login request."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="mappers" upperBound="-1"
-        eType="#//Mapper" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeBindings" upperBound="-1"
+        eType="#//AttributeBinding" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -101,13 +101,13 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Mapper">
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeBinding">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="Protocol mappers perform transformation on tokens and documents. They can do things like map user data into protocol claims, or just transform any requests going between the client and auth server."/>
+      <details key="documentation" value="Binding of actor attribute to Keycloak attribute."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tokenClaimName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="attributeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Name of the claim to insert into the token. This can be a fully qualified name like 'address.street'. In this case, a nested json object will be created. To prevent nesting and use dot literally, escape the dot with backslash (\.)."/>
+        <details key="documentation" value="Name of attribute used by Keycloak. Actor attribute can be found using ASM to Keycloak transformation trace."/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -27,7 +27,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/bearerOnly"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/directAccessGrantsEnabled"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Client/redirectUris"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/mappers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference keycloak.ecore#//Client/attributeBindings"/>
     </genClasses>
     <genClasses ecoreClass="keycloak.ecore#//User">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//User/username"/>
@@ -43,8 +43,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/temporary"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//UserCredential/value"/>
     </genClasses>
-    <genClasses ecoreClass="keycloak.ecore#//Mapper">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//Mapper/tokenClaimName"/>
+    <genClasses ecoreClass="keycloak.ecore#//AttributeBinding">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute keycloak.ecore#//AttributeBinding/attributeName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

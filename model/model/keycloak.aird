@@ -5,7 +5,7 @@
     <semanticResources>keycloak.genmodel</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_XXVcYBhDEeuRBvqv_X1WHw">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="1190b742-dee3-44fb-b4a3-2ded5c9b170a">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_Zv-HsBhDEeuRBvqv_X1WHw" name="keycloak class diagram" repPath="#_ZvauEBhDEeuRBvqv_X1WHw" changeId="8e96b503-4176-40bf-8c24-b232705a165b">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="keycloak.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -195,7 +195,7 @@
         </edges>
         <edges xmi:type="notation:Edge" xmi:id="_gXqSwBhWEeuRBvqv_X1WHw" type="4001" element="_gXkzPBhWEeuRBvqv_X1WHw" source="_DkcEMBhEEeuRBvqv_X1WHw" target="_2aBzMBhVEeuRBvqv_X1WHw">
           <children xmi:type="notation:Node" xmi:id="_gXqSxBhWEeuRBvqv_X1WHw" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gXqSxRhWEeuRBvqv_X1WHw" x="-6" y="-51"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gXqSxRhWEeuRBvqv_X1WHw" x="-3" y="-75"/>
           </children>
           <children xmi:type="notation:Node" xmi:id="_gXqSxhhWEeuRBvqv_X1WHw" type="6002">
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_gXqSxxhWEeuRBvqv_X1WHw" x="-14" y="10"/>
@@ -496,9 +496,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_2Z7FgBhVEeuRBvqv_X1WHw" name="Mapper" tooltipText="" incomingEdges="_gXkzPBhWEeuRBvqv_X1WHw" width="12" height="10">
-      <target xmi:type="ecore:EClass" href="keycloak.ecore#//Mapper"/>
-      <semanticElements xmi:type="ecore:EClass" href="keycloak.ecore#//Mapper"/>
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_2Z7FgBhVEeuRBvqv_X1WHw" name="AttributeBinding" tooltipText="" incomingEdges="_gXkzPBhWEeuRBvqv_X1WHw" width="12" height="10">
+      <target xmi:type="ecore:EClass" href="keycloak.ecore#//AttributeBinding"/>
+      <semanticElements xmi:type="ecore:EClass" href="keycloak.ecore#//AttributeBinding"/>
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
@@ -506,18 +506,18 @@
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_E0ZLABhWEeuRBvqv_X1WHw" name="tokenClaimName : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="keycloak.ecore#//Mapper/tokenClaimName"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="keycloak.ecore#//Mapper/tokenClaimName"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_E0ZLABhWEeuRBvqv_X1WHw" name="attributeName : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="keycloak.ecore#//AttributeBinding/attributeName"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="keycloak.ecore#//AttributeBinding/attributeName"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_peCu4hoLEeu5V5zjKHSMWg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gXkzPBhWEeuRBvqv_X1WHw" name="[0..*] mappers" sourceNode="_DkVWgBhEEeuRBvqv_X1WHw" targetNode="_2Z7FgBhVEeuRBvqv_X1WHw">
-      <target xmi:type="ecore:EReference" href="keycloak.ecore#//Client/mappers"/>
-      <semanticElements xmi:type="ecore:EReference" href="keycloak.ecore#//Client/mappers"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_gXkzPBhWEeuRBvqv_X1WHw" name="[0..*] attributeBindings" sourceNode="_DkVWgBhEEeuRBvqv_X1WHw" targetNode="_2Z7FgBhVEeuRBvqv_X1WHw">
+      <target xmi:type="ecore:EReference" href="keycloak.ecore#//Client/attributeBindings"/>
+      <semanticElements xmi:type="ecore:EReference" href="keycloak.ecore#//Client/attributeBindings"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" uid="_gXlaQBhWEeuRBvqv_X1WHw" description="_N69zIBhEEeuRBvqv_X1WHw" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_gXlaQhhWEeuRBvqv_X1WHw" showIcon="false">
           <customFeatures>labelSize</customFeatures>
