@@ -16,7 +16,10 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui.ide,
  com.google.guava;bundle-version="21.0.0",
  hu.blackbelt.epsilon.runtime.execution,
- org.eclipse.epsilon.common
+ org.eclipse.epsilon.common,
+ com.fasterxml.jackson.core.jackson-annotations;bundle-version="[2.9.5,3.0.0)",
+ com.fasterxml.jackson.core.jackson-core;bundle-version="[2.9.5,3.0.0)",
+ com.fasterxml.jackson.core.jackson-databind;bundle-version="[2.9.5,3.0.0)"
 Export-Package: hu.blackbelt.judo.meta.keycloak,
  hu.blackbelt.judo.meta.keycloak.impl,
  hu.blackbelt.judo.meta.keycloak.runtime,

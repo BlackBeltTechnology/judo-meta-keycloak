@@ -43,6 +43,11 @@
                                     <token>(repository-reference\ location\=\")(.*?)(epsilon-runtime-eclipse\/)(.*?)(\")</token>
                                     <value>repository-reference location="$2$3${epsilon-runtime-eclipse-version}"</value>
                                 </replacement>
+                                <!-- P2 Swagger -->
+                                <replacement>
+                                    <token>(repository-reference\ location\=\")(.*?)(p2-swagger\/)(.*?)(\")</token>
+                                    <value>repository-reference location="$2$3${p2-swagger-version}"</value>
+                                </replacement>
                             </replacements>
                             <regex>true</regex>
                         </configuration>
