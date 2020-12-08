@@ -32,7 +32,6 @@ Workflow {
 	component = hu.blackbelt.eclipse.emf.genmodel.generator.helper.HelperGeneratorWorkflow {
 		modelDir = "${rootPath}/${modelDir}"
 		javaGenPath = "${rootPath}/${javaGenPath}"
-		generateUuid = false
 	}
 
 	// Builder for model
