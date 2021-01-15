@@ -66,6 +66,8 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attributeBindings" upperBound="-1"
         eType="#//AttributeBinding" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="webOrigins" upperBound="-1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
