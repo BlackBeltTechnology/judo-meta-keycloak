@@ -13,9 +13,11 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.stream.Stream;
 
 import javax.inject.Inject;
 
+import lombok.SneakyThrows;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +39,7 @@ import hu.blackbelt.osgi.utils.osgi.api.BundleTrackerManager;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
-public class KeycloakModelLoadITest {
+public class KeycloakModelLoadTest extends BaseTest {
 
     private static final String DEMO = "northwind-keycloak";
 
@@ -53,10 +55,12 @@ public class KeycloakModelLoadITest {
     @Inject
     KeycloakModel keycloakModel;
 
+    @SneakyThrows
     @Configuration
-    public Option[] config() throws IOException, KeycloakValidationException {
+    public Option[] config() {
+        Option[] options = Stream.of(super.config(), getRuntimeFeaturesForMetamodel(this.getClass())).flatMap(Stream::of).toArray(Option[]::new);
 
-        return combine(getRuntimeFeaturesForMetamodel(this.getClass()),
+        return combine(options,
                 mavenBundle(maven()
                         .groupId("hu.blackbelt.judo.meta")
                         .artifactId("hu.blackbelt.judo.meta.keycloak.osgi")

@@ -50,6 +50,32 @@
                         </configuration>
                     </execution>
                 </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>hu.blackbelt.eclipse</groupId>
+                        <artifactId>hu.blackbelt.eclipse.emf.genmodel.generator.core</artifactId>
+                        <version>${emf-genmodel-generator-version}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>hu.blackbelt.eclipse</groupId>
+                        <artifactId>hu.blackbelt.eclipse.emf.genmodel.generator.builder</artifactId>
+                        <version>${emf-genmodel-generator-version}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>hu.blackbelt.eclipse</groupId>
+                        <artifactId>hu.blackbelt.eclipse.emf.genmodel.generator.helper</artifactId>
+                        <version>${emf-genmodel-generator-version}</version>
+                    </dependency>
+
+                    <dependency>
+                        <groupId>hu.blackbelt.judo</groupId>
+                        <artifactId>hu.blackbelt.judo.eclipse.emf.genmodel.generator.runtimemodel</artifactId>
+                        <version>${judo-genmodel-generator-version}</version>
+                    </dependency>
+
+                </dependencies>
             </plugin>
 
             <plugin>
