@@ -744,7 +744,7 @@
             <id>modules</id>
             <activation>
                 <property>
-                    <name>github_release</name>
+                    <name>ignore_modules</name>
                     <value>!true</value>
                 </property>
             </activation>
@@ -830,6 +830,10 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <id>update-target-versions</id>
+            <modules>
+                <module>targetdefinition</module>
+            </modules>
+
             <build>
                 <plugins>
                     <plugin>

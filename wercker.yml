@@ -32,7 +32,7 @@ build:
     - wercker/maven:
       name: Update target versions
       goals: validate
-      profiles: update-target-versions
+      profiles: update-target-versions -Dignore_modules=true
       maven_opts: -Dtycho.mode=maven
       settings: .maven.xml
       cache_repo: true
@@ -56,7 +56,7 @@ build:
       name: Deploy (with deploy profiles)
       goals: deploy
       settings: .maven.xml
-      maven_opts: -Dtycho.mode=maven -DdeployOnly -DskipTests=true -Dgithub_release=true
+      maven_opts: -Dtycho.mode=maven -DdeployOnly -DskipTests=true -Dignore_modules=true -Dgithub_release=true
       profiles: ${DEPLOY_PROFILES}
       cache_repo: true
 
@@ -164,7 +164,7 @@ release:
       name: Update target versions
       goals: validate
       profiles: update-target-versions
-      maven_opts: -Dtycho.mode=maven
+      maven_opts: -Dtycho.mode=maven -Dignore_modules=true
       settings: .maven.xml
       cache_repo: true
 
@@ -187,7 +187,7 @@ release:
       name: Deploy (with deploy profiles)
       goals: deploy
       settings: .maven.xml
-      maven_opts: -Dtycho.mode=maven -DdeployOnly -DskipTests=true -Dgithub_release=true
+      maven_opts: -Dtycho.mode=maven -DdeployOnly -DskipTests=true -Dignore_modules=true -Dgithub_release=true 
       profiles: ${DEPLOY_PROFILES}
       cache_repo: true
 
