@@ -864,7 +864,7 @@
                                     <outputDirectory>${basedir}/targetdefinition</outputDirectory>
                                     <resources>
                                         <resource>
-                                            <directory>${basedir}/targetdefinition/template</directory>
+                                            <directory>${basedir}/template</directory>
                                             <filtering>true</filtering>
                                         </resource>
                                     </resources>
