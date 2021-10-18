@@ -1,6 +1,6 @@
 package hu.blackbelt.judo.meta.keycloak.osgi.itest;
 
-import static hu.blackbelt.judo.meta.keycloak.osgi.itest.KeycloakKarafFeatureProvider.getRuntimeFeaturesForMetamodel;
+import static hu.blackbelt.judo.meta.keycloak.osgi.itest.KarafFeatureProvider.*;
 import static org.junit.Assert.assertFalse;
 import static org.ops4j.pax.exam.CoreOptions.maven;
 import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
@@ -56,7 +56,7 @@ public class KeycloakModelLoadITest {
     @Configuration
     public Option[] config() throws IOException, KeycloakValidationException {
 
-        return combine(getRuntimeFeaturesForMetamodel(this.getClass()),
+        return combine(karafConfig(this.getClass()),
                 mavenBundle(maven()
                         .groupId("hu.blackbelt.judo.meta")
                         .artifactId("hu.blackbelt.judo.meta.keycloak.osgi")
@@ -71,17 +71,17 @@ public class KeycloakModelLoadITest {
     }
 
     private InputStream getKeycloakModelBundle() throws IOException, KeycloakValidationException {
-    	KeycloakModel keycloakModel = KeycloakModel.buildKeycloakModel()
-    			.name(DEMO)
-    			.uri(URI.createFileURI("test.model"))
-    			.build();
+        KeycloakModel keycloakModel = KeycloakModel.buildKeycloakModel()
+                .name(DEMO)
+                .uri(URI.createFileURI("test.model"))
+                .build();
 
         ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-    	keycloakModel.saveKeycloakModel(SaveArguments.keycloakSaveArgumentsBuilder().outputStream(os));
+        keycloakModel.saveKeycloakModel(SaveArguments.keycloakSaveArgumentsBuilder().outputStream(os));
         return bundle()
                 .add( "model/" + DEMO + ".judo-meta-keycloak",
-                		new ByteArrayInputStream(os.toByteArray()))
+                        new ByteArrayInputStream(os.toByteArray()))
                 .set( Constants.BUNDLE_MANIFESTVERSION, "2")
                 .set( Constants.BUNDLE_SYMBOLICNAME, DEMO + "-keycloak" )
                 .set( "Keycloak-Models", "file=model/" + DEMO + ".judo-meta-keycloak;version=1.0.0;name=" + DEMO + ";checksum=notset;meta-version-range=\"[1.0.0,2)\"")
