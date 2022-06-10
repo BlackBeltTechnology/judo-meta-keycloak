@@ -1,6 +1,5 @@
 package hu.blackbelt.judo.meta.keycloak.runtime;
 
-import hu.blackbelt.epsilon.runtime.execution.impl.Slf4jLog;
 import hu.blackbelt.judo.meta.keycloak.*;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.util.BasicEList;
@@ -20,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class KeycloakUtilsTest {
 
     private static final String TARGET_TEST_CLASSES = "target/test-classes";
-    private static final Slf4jLog logger = new Slf4jLog(log);
 
     private KeycloakModel keycloakModel;
     private KeycloakUtils keycloakUtils;
@@ -44,7 +42,7 @@ public class KeycloakUtilsTest {
                     .file(new File(TARGET_TEST_CLASSES, format("%s-keycloak.xml", testName)))
                     .build());
         } catch (IOException e) {
-            logger.warn("Unable to save keycloak model");
+            log.warn("Unable to save keycloak model");
         } catch (KeycloakModel.KeycloakValidationException e) {
             fail("Keycloak model is not valid", e);
         }
