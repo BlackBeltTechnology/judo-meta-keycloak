@@ -36,7 +36,7 @@ jobs:
           gpg-private-key: ${{ secrets.GPG_SECRET_KEYS }}
           gpg-passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
-x      - name: List GPG keys
+      - name: List GPG keys
         run: gpg --list-keys
 
       - name: Grep config
