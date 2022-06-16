@@ -1,21 +1,14 @@
 package hu.blackbelt.judo.meta.keycloak.osgi.itest;
 
-import static hu.blackbelt.judo.meta.keycloak.osgi.itest.KarafFeatureProvider.*;
-import static org.junit.Assert.assertFalse;
-import static org.ops4j.pax.exam.CoreOptions.maven;
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
-import static org.ops4j.pax.exam.CoreOptions.provision;
-import static org.ops4j.pax.exam.OptionUtils.combine;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
-import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.inject.Inject;
-
+import hu.blackbelt.epsilon.runtime.execution.api.Log;
+import hu.blackbelt.epsilon.runtime.execution.exceptions.ScriptExecutionException;
+import hu.blackbelt.epsilon.runtime.execution.impl.BufferedSlf4jLogger;
+import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator;
+import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel;
+import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.KeycloakValidationException;
+import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.SaveArguments;
+import hu.blackbelt.osgi.utils.osgi.api.BundleTrackerManager;
+import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.util.URI;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,21 +21,24 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.service.log.LogService;
 
-import hu.blackbelt.epsilon.runtime.execution.impl.StringBuilderLogger;
-import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator;
-import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel;
-import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.KeycloakValidationException;
-import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.SaveArguments;
-import hu.blackbelt.osgi.utils.osgi.api.BundleTrackerManager;
+import javax.inject.Inject;
+import java.io.*;
+import java.net.URISyntaxException;
+
+import static hu.blackbelt.judo.meta.keycloak.osgi.itest.KarafFeatureProvider.karafConfig;
+import static hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator.calculateKeycloakValidationScriptURI;
+import static hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator.validateKeycloak;
+import static org.ops4j.pax.exam.CoreOptions.*;
+import static org.ops4j.pax.exam.OptionUtils.combine;
+import static org.ops4j.pax.tinybundles.core.TinyBundles.bundle;
+import static org.ops4j.pax.tinybundles.core.TinyBundles.withBnd;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
+@Slf4j
 public class KeycloakModelLoadITest {
 
     private static final String DEMO = "northwind-keycloak";
-
-    @Inject
-    LogService log;
 
     @Inject
     protected BundleTrackerManager bundleTrackerManager;
@@ -89,16 +85,9 @@ public class KeycloakModelLoadITest {
     }
 
     @Test
-    public void testModelValidation() {
-        StringBuilderLogger logger = new StringBuilderLogger(StringBuilderLogger.LogLevel.DEBUG);
-        try {
-            KeycloakEpsilonValidator.validateKeycloak(logger,
-                    keycloakModel,
-                    KeycloakEpsilonValidator.calculateKeycloakValidationScriptURI());
-
-        } catch (Exception e) {
-            log.log(LogService.LOG_ERROR, logger.getBuffer());
-            assertFalse(true);
+    public void testModelValidation() throws Exception {
+        try (Log bufferedLogger = new BufferedSlf4jLogger(log)) {
+            validateKeycloak(bufferedLogger, keycloakModel, calculateKeycloakValidationScriptURI());
         }
     }
 }
