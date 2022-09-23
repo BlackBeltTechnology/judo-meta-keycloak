@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description>
+      To install these features, point Eclipse at this site.
+   </description>
+   <feature id="hu.blackbelt.judo.meta.keycloak.feature">
+      <category name="keycloak"/>
+   </feature>
+   <category-def name="keycloak" label="Judo Keycloak Model">
+      <description>
+         Judo Keycloak Model Update Site: contains all features in this build.
+      </description>
+   </category-def>
+
+   <feature id="hu.blackbelt.judo.meta.keycloak.feature.source">
+      <category name="keycloak_source"/>
+   </feature>
+   <category-def name="keycloak_source" label="Judo Keycloak Model Source">
+      <description>
+         Judo Keycloak Model source code.
+      </description>
+   </category-def>
+
+   <repository-reference location="https://nexus.judo.technology/repository/p2/epsilon-runtime-eclipse/1.4.0.20220629_124147_7f70e44e_develop" enabled="true" />
+   <repository-reference location="https://nexus.judo.technology/repository/p2/judo-epp-common/4.23.0.20220617_120427_1e370db3_develop" enabled="true" />
+</site>
