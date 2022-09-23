@@ -45,7 +45,7 @@
 
 	<properties>
 		<maven>3.8.3</maven>
-		<revision>1.0.0-SNAPSHOT</revision>
+		<revision>1.0.0</revision>
         <project-shortname>judo-meta-keycloak</project-shortname>
         <project-repositoryId>BlackBeltTechnology/judo-meta-keycloak</project-repositoryId>
         <osgi-default-import>
