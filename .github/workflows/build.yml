@@ -132,15 +132,15 @@ jobs:
           deploy
 
       # Phase 2 - Build and deploy to maven central
-      - name: 🎁 Deploy with Maven (central)
-        if: ${{ always() && startsWith(github.head_ref, 'release') && job.status == 'success' }}
-        run: |-
-          ./mvnw -B -Dstyle.color=always \
-          -Drevision=${{ steps.version.outputs.version }} \
-          -DdeployOnly \
-          -P"release-central,sign-artifacts,-verify-feature" \
-          -Dmaven.test.skip=true \
-          deploy
+#      - name: 🎁 Deploy with Maven (central)
+#        if: ${{ always() && startsWith(github.head_ref, 'release') && job.status == 'success' }}
+#        run: |-
+#          ./mvnw -B -Dstyle.color=always \
+#          -Drevision=${{ steps.version.outputs.version }} \
+#          -DdeployOnly \
+#          -P"release-central,sign-artifacts,-verify-feature" \
+#          -Dmaven.test.skip=true \
+#          deploy
 
       - name: Release P2
         run: |-
