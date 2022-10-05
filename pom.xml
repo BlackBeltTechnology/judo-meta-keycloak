@@ -87,7 +87,7 @@
 		<log4j.configuration>log4j.properties</log4j.configuration>
 
 		<p2-swagger-version>1.0.4.20220922_010205_ad4c41cf_develop</p2-swagger-version>
-		<jackson-version>2.9.10</jackson-version>
+		<jackson-version>2.13.4</jackson-version>
 
 		<!-- Define overridable properties for tycho-surefire-plugin -->
 		<platformSystemProperties />
