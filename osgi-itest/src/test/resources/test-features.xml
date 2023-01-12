@@ -42,7 +42,6 @@
 
     <feature name="test"  version="1" description="Base test features" install="true">
         <feature prerequisite="true">wrap</feature>
-        <feature prerequisite="true">shell</feature>
         <feature prerequisite="true">scr</feature>
         <feature>osgi-utils</feature>
         <feature>tinybundles</feature>
