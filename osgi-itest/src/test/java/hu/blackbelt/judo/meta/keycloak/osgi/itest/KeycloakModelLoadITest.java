@@ -96,11 +96,11 @@ public class KeycloakModelLoadITest {
 
         keycloakModel.saveKeycloakModel(SaveArguments.keycloakSaveArgumentsBuilder().outputStream(os));
         return bundle()
-                .add( "model/" + DEMO + ".judo-meta-keycloak",
+                .add( "model/" + keycloakModel.getName() + "-keycloak.model",
                         new ByteArrayInputStream(os.toByteArray()))
                 .set( Constants.BUNDLE_MANIFESTVERSION, "2")
-                .set( Constants.BUNDLE_SYMBOLICNAME, DEMO + "-keycloak" )
-                .set( "Keycloak-Models", "file=model/" + DEMO + ".judo-meta-keycloak;version=1.0.0;name=" + DEMO + ";checksum=notset;meta-version-range=\"[1.0.0,2)\"")
+                .set( Constants.BUNDLE_SYMBOLICNAME, keycloakModel.getName() + "-keycloak" )
+                .set( "Keycloak-Models", "name=" + keycloakModel.getName() + ";file=model/" + keycloakModel.getName() + "-keycloak.model")
                 .build( withBnd());
     }
 
