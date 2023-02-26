@@ -118,7 +118,7 @@ public class KeycloakModelBundleTracker {
                         keycloakModelRegistrations.put(key, modelServiceRegistration);
 
                     } catch (IOException | KeycloakModel.KeycloakValidationException e) {
-                        log.error("Could not load Psm model: " + params.get(KeycloakModel.NAME) + " from bundle: " + trackedBundle.getBundleId(), e);
+                        log.error("Could not load Keycloak model: " + params.get(KeycloakModel.NAME) + " from bundle: " + trackedBundle.getBundleId(), e);
                     }
                 }
             }
