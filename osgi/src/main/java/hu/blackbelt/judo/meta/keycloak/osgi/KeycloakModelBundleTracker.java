@@ -54,19 +54,9 @@ import static java.util.Optional.ofNullable;
 
 @Component(immediate = true)
 @Slf4j
-@Designate(ocd = KeycloakModelBundleTracker.TrackerConfig.class)
 public class KeycloakModelBundleTracker {
 
     public static final String KEYCLOAK_MODELS = "Keycloak-Models";
-
-    @ObjectClassDefinition(name="Keycloak Model Bundle TTracker")
-    public @interface TrackerConfig {
-        @AttributeDefinition(
-                name = "Tags",
-                description = "Which tags are on the loaded model when there is no one defined in bundle"
-        )
-        String tags() default "";
-    }
 
     @Reference
     BundleTrackerManager bundleTrackerManager;
@@ -75,11 +65,8 @@ public class KeycloakModelBundleTracker {
 
     Map<String, KeycloakModel> keycloakModels = new HashMap<>();
 
-    TrackerConfig config;
-
     @Activate
-    public void activate(final ComponentContext componentContext, final TrackerConfig trackerConfig) {
-        this.config = trackerConfig;
+    public void activate(final ComponentContext componentContext) {
         bundleTrackerManager.registerBundleCallback(this.getClass().getName(),
                 new KeycloakRegisterCallback(componentContext.getBundleContext()),
                 new KeycloakUnregisterCallback(),
@@ -117,29 +104,21 @@ public class KeycloakModelBundleTracker {
                 if (keycloakModelRegistrations.containsKey(key)) {
                     log.error("Keycloak model already loaded: " + key);
                 } else {
-                    if (params.containsKey(KeycloakModel.META_VERSION_RANGE)) {
-                        VersionRange versionRange = new VersionRange(params.get(KeycloakModel.META_VERSION_RANGE).replaceAll("\"", ""));
-                        if (versionRange.includes(bundleContext.getBundle().getVersion())) {
-                            // Unpack model
-                            try {
-                                KeycloakModel keycloakModel = loadKeycloakModel(keycloakLoadArgumentsBuilder()
-                                        .inputStream(trackedBundle.getEntry(params.get("file")).openStream())
-                                        .name(params.get(KeycloakModel.NAME))
-                                        .version(trackedBundle.getVersion().toString())
-                                        .checksum(Optional.ofNullable(params.get(KeycloakModel.CHECKSUM)).orElse("notset"))
-                                        .tags(Stream.of(ofNullable(params.get(KeycloakModel.TAGS)).orElse(config.tags()).split(",")).collect(Collectors.toSet()))
-                                        .acceptedMetaVersionRange(Optional.of(versionRange.toString()).orElse("[0,99)")));
+                    // Unpack model
+                    try {
+                        KeycloakModel keycloakModel = loadKeycloakModel(keycloakLoadArgumentsBuilder()
+                                .inputStream(trackedBundle.getEntry(params.get("file")).openStream())
+                                .name(params.get(KeycloakModel.NAME))
+                                .version(trackedBundle.getVersion().toString()));
 
-                                log.info("Registering Keycloak model: " + keycloakModel);
+                        log.info("Registering Keycloak model: " + keycloakModel);
 
-                                ServiceRegistration<KeycloakModel> modelServiceRegistration = bundleContext.registerService(KeycloakModel.class, keycloakModel, keycloakModel.toDictionary());
-                                keycloakModels.put(key, keycloakModel);
-                                keycloakModelRegistrations.put(key, modelServiceRegistration);
+                        ServiceRegistration<KeycloakModel> modelServiceRegistration = bundleContext.registerService(KeycloakModel.class, keycloakModel, keycloakModel.toDictionary());
+                        keycloakModels.put(key, keycloakModel);
+                        keycloakModelRegistrations.put(key, modelServiceRegistration);
 
-                            } catch (IOException | KeycloakModel.KeycloakValidationException e) {
-                                log.error("Could not load Psm model: " + params.get(KeycloakModel.NAME) + " from bundle: " + trackedBundle.getBundleId(), e);
-                            }
-                        }
+                    } catch (IOException | KeycloakModel.KeycloakValidationException e) {
+                        log.error("Could not load Keycloak model: " + params.get(KeycloakModel.NAME) + " from bundle: " + trackedBundle.getBundleId(), e);
                     }
                 }
             }
