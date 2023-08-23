@@ -20,7 +20,7 @@ package hu.blackbelt.judo.meta.keycloak.osgi.itest;
  * #L%
  */
 
-import hu.blackbelt.epsilon.runtime.execution.api.Log;
+import org.slf4j.Logger;
 import hu.blackbelt.epsilon.runtime.execution.exceptions.ScriptExecutionException;
 import hu.blackbelt.epsilon.runtime.execution.impl.BufferedSlf4jLogger;
 import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator;
@@ -106,7 +106,7 @@ public class KeycloakModelLoadITest {
 
     @Test
     public void testModelValidation() throws Exception {
-        try (Log bufferedLogger = new BufferedSlf4jLogger(log)) {
+        try (BufferedSlf4jLogger bufferedLogger = new BufferedSlf4jLogger(log)) {
             validateKeycloak(bufferedLogger, keycloakModel, calculateKeycloakValidationScriptURI());
         }
     }

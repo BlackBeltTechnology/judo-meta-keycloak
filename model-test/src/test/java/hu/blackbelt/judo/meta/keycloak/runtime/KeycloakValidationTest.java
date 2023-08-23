@@ -20,7 +20,6 @@ package hu.blackbelt.judo.meta.keycloak.runtime;
  * #L%
  */
 
-import hu.blackbelt.epsilon.runtime.execution.api.Log;
 import hu.blackbelt.epsilon.runtime.execution.exceptions.EvlScriptExecutionException;
 import hu.blackbelt.epsilon.runtime.execution.impl.BufferedSlf4jLogger;
 import hu.blackbelt.judo.meta.keycloak.support.KeycloakModelResourceSupport;
@@ -55,7 +54,7 @@ public class KeycloakValidationTest {
     }
 
     private void runEpsilon (Collection<String> expectedErrors, Collection<String> expectedWarnings) throws Exception {
-        try (Log bufferedLogger = new BufferedSlf4jLogger(log)) {
+        try (BufferedSlf4jLogger bufferedLogger = new BufferedSlf4jLogger(log)) {
             KeycloakEpsilonValidator.validateKeycloak(bufferedLogger,
                     keycloakModel,
                     KeycloakEpsilonValidator.calculateKeycloakValidationScriptURI(),
