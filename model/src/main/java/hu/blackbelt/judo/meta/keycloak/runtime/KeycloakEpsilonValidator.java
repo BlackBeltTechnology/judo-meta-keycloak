@@ -34,18 +34,18 @@ import java.util.Collection;
 import org.eclipse.epsilon.common.util.UriUtil;
 
 import hu.blackbelt.epsilon.runtime.execution.ExecutionContext;
-import hu.blackbelt.epsilon.runtime.execution.api.Log;
 import hu.blackbelt.epsilon.runtime.execution.exceptions.ScriptExecutionException;
+import org.slf4j.Logger;
 
 public class KeycloakEpsilonValidator {
 
-    public static void validateKeycloak(Log log,
-            KeycloakModel keycloakModel,
-            URI scriptRoot) throws ScriptExecutionException, URISyntaxException {
+    public static void validateKeycloak(Logger log,
+                                        KeycloakModel keycloakModel,
+                                        URI scriptRoot) throws ScriptExecutionException, URISyntaxException {
         validateKeycloak(log, keycloakModel, scriptRoot, emptyList(), emptyList());
     }
 
-    public static void validateKeycloak(Log log,
+    public static void validateKeycloak(Logger log,
             KeycloakModel keycloakModel,
             URI scriptRoot,
             Collection<String> expectedErrors,
