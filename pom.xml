@@ -88,7 +88,7 @@
 		<pax-exam-version>4.13.3</pax-exam-version>
 		<log4j.configuration>log4j.properties</log4j.configuration>
 
-		<swagger-p2-version>1.0.4.20230912_094859_9aa85260_feature_JNG_3193_MoveModules</swagger-p2-version>
+		<swagger-p2-version>1.0.4.20230913_065313_f6f1485f_develop</swagger-p2-version>
 		<jackson-version>2.15.2</jackson-version>
 
 		<!-- Define overridable properties for tycho-surefire-plugin -->
