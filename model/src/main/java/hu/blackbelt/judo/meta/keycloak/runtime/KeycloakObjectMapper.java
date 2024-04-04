@@ -1,5 +1,6 @@
 package hu.blackbelt.judo.meta.keycloak.runtime;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -82,6 +83,10 @@ public class KeycloakObjectMapper {
 
     @JsonDeserialize(as = ClientImplWithCollectionSetters.class)
     private abstract static class ClientMixIn {
+    }
+
+    @JsonIgnoreProperties(value = { "attributeBindings" })
+    public abstract static class ClientSkipAttributeBindingsMixIn {
     }
 
     @JsonDeserialize(as = UserImplWithCollectionSetters.class)
