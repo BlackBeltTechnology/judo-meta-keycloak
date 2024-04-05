@@ -15,6 +15,29 @@ import java.io.IOException;
 
 public class KeycloakObjectMapper {
 
+    private static final ObjectMapper OBJECT_MAPPER = KeycloakObjectMapperInit();
+
+    private KeycloakObjectMapper() {
+    }
+
+    private static ObjectMapper KeycloakObjectMapperInit() {
+        SimpleModule module = new SimpleModule();
+        module.addDeserializer(EList.class, new EListDeserializer());
+        final ObjectMapper mapper = new ObjectMapper();
+        mapper.addMixIn(Client.class, ClientMixIn.class);
+        mapper.addMixIn(User.class, UserMixIn.class);
+        mapper.addMixIn(Realm.class, RealmMixIn.class);
+        mapper.addMixIn(UserCredential.class, UserCredentialMixIn.class);
+        mapper.addMixIn(AttributeBinding.class, AttributeBindingMixIn.class);
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        mapper.registerModule(module);
+        return mapper;
+    }
+
+    public static ObjectMapper objectMapper() {
+        return OBJECT_MAPPER;
+    }
+
     private static class EListDeserializer extends JsonDeserializer<EList<?>> implements ContextualDeserializer {
 
         private JavaType valueType;
@@ -105,17 +128,4 @@ public class KeycloakObjectMapper {
     private abstract static class UserCredentialMixIn {
     }
 
-    public static ObjectMapper objectMapper() {
-        SimpleModule module = new SimpleModule();
-        module.addDeserializer(EList.class, new EListDeserializer());
-        final ObjectMapper mapper = new ObjectMapper();
-        mapper.addMixIn(Client.class, ClientMixIn.class);
-        mapper.addMixIn(User.class, UserMixIn.class);
-        mapper.addMixIn(Realm.class, RealmMixIn.class);
-        mapper.addMixIn(UserCredential.class, UserCredentialMixIn.class);
-        mapper.addMixIn(AttributeBinding.class, AttributeBindingMixIn.class);
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        mapper.registerModule(module);
-        return mapper;
-    }
 }
