@@ -79,6 +79,7 @@
 		<!--suppress UnresolvedMavenProperty -->
 		<logback-test-config>${maven.multiModuleProjectDirectory}/logback-test.xml</logback-test-config>
 		<logback-version>1.5.12</logback-version>
+		<lombok-version>1.18.34</lombok-version>
 
 		<!-- Pax exam dependencies -->
 		<karaf-version>4.4.5</karaf-version>
@@ -90,7 +91,7 @@
 		<log4j.configuration>log4j.properties</log4j.configuration>
 
 		<swagger-p2-version>1.0.4.20230913_065313_f6f1485f_develop</swagger-p2-version>
-		<jackson-version>2.15.2</jackson-version>
+		<jackson-version>2.17.2</jackson-version>
 
 		<!-- Define overridable properties for tycho-surefire-plugin -->
 		<platformSystemProperties />
@@ -809,7 +810,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <version>${lombok-version}</version>
         </dependency>
 
 		<dependency>
