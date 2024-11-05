@@ -59,6 +59,7 @@ public class KeycloakEpsilonValidator {
                                 .log(log)
                                 .name("Keycloak")
                                 .validateModel(false)
+                                .useCache(true)
                                 .resource(keycloakModel.getResource())
                                 .build()))
                 .injectContexts(singletonMap("keycloakUtils", new KeycloakUtils(keycloakModel.getResourceSet())))
