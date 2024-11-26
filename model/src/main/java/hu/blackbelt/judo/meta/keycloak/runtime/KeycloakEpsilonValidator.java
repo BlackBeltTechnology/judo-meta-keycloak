@@ -46,10 +46,18 @@ public class KeycloakEpsilonValidator {
     }
 
     public static void validateKeycloak(Logger log,
+                                        KeycloakModel keycloakModel,
+                                        URI scriptRoot,
+                                        Collection<String> expectedErrors,
+                                        Collection<String> expectedWarnings) throws ScriptExecutionException, URISyntaxException {
+        validateKeycloak(log, keycloakModel, scriptRoot, expectedErrors, expectedWarnings, false);
+    }
+
+    public static void validateKeycloak(Logger log,
             KeycloakModel keycloakModel,
             URI scriptRoot,
             Collection<String> expectedErrors,
-            Collection<String> expectedWarnings) throws ScriptExecutionException, URISyntaxException {
+            Collection<String> expectedWarnings, Boolean useCache) throws ScriptExecutionException, URISyntaxException {
         ExecutionContext executionContext = executionContextBuilder()
                 .log(log)
                 .resourceSet(keycloakModel.getResourceSet())
@@ -59,7 +67,9 @@ public class KeycloakEpsilonValidator {
                                 .log(log)
                                 .name("Keycloak")
                                 .validateModel(false)
+                                .useCache(true)
                                 .resource(keycloakModel.getResource())
+                                .useCache(useCache)
                                 .build()))
                 .injectContexts(singletonMap("keycloakUtils", new KeycloakUtils(keycloakModel.getResourceSet())))
                 .build();
@@ -74,6 +84,7 @@ public class KeycloakEpsilonValidator {
                                 .source(UriUtil.resolve("keycloak.evl", scriptRoot))
                                 .expectedErrors(expectedErrors)
                                 .expectedWarnings(expectedWarnings)
+                                .parallel(true)
                                 .build());
 
             } finally {
