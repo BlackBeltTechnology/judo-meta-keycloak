@@ -67,7 +67,6 @@ public class KeycloakEpsilonValidator {
                                 .log(log)
                                 .name("Keycloak")
                                 .validateModel(false)
-                                .useCache(true)
                                 .resource(keycloakModel.getResource())
                                 .useCache(useCache)
                                 .build()))
