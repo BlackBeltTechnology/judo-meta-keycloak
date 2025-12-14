@@ -1,0 +1,1 @@
+The single source of truth for understanding this project's documentation and conventions is `AGENTS.md`. Please refer to that file for comprehensive information.
