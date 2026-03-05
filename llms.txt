@@ -1,0 +1,51 @@
+# judo-meta-keycloak
+
+> An Eclipse/EMF metamodel and runtime library for Keycloak identity and access management configuration, part of the Judo framework for model-driven application development.
+
+Key facts:
+- Java 21, Maven 3.8.7+ with Eclipse Tycho 4.0.13
+- 6 Maven modules: core model, OSGi bundle, Eclipse feature/site, unit tests, integration tests
+- Ecore metamodel defining Keycloak realm configurations (realms, clients, users, credentials, attribute bindings)
+- EMF code generation via MWE2 workflows; Epsilon EVL for model validation; Jackson for JSON serialization
+- Deployable as Eclipse plugin (P2 update site) or standalone OSGi bundle (Apache Karaf 4.4.7)
+- License: Eclipse Public License 2.0 (EPL-2.0)
+
+## Docs
+
+- [README.md](README.md): Project overview with architecture diagrams, build commands, and configuration
+- [AGENTS.md](AGENTS.md): Developer guide with directory structure, build commands, and coding conventions
+- [.github/CIFLOW.md](.github/CIFLOW.md): CI/CD workflow and branching strategy documentation
+
+## Modules — Core
+
+- [model/pom.xml](model/pom.xml): Eclipse plugin containing the Ecore metamodel, EMF-generated code, and hand-written runtime classes for validation, JSON export, and Jackson deserialization
+- [model/model/keycloak.ecore](model/model/keycloak.ecore): Ecore metamodel defining Realm, Client, User, UserCredential, and AttributeBinding entity types
+
+## Modules — Distribution
+
+- [osgi/pom.xml](osgi/pom.xml): Standalone OSGi bundle for Karaf deployments with embedded Epsilon validation rules and automatic model discovery via BundleTracker
+- [feature/feature.xml](feature/feature.xml): Eclipse feature definition for IDE installation
+- [site/pom.xml](site/pom.xml): Eclipse P2 update site for "Install New Software"
+
+## Modules — Testing
+
+- [model-test/pom.xml](model-test/pom.xml): JUnit 5 unit tests for KeycloakUtils, KeycloakConfigurationExporter, KeycloakEpsilonValidator, and model execution context
+- [osgi-itest/pom.xml](osgi-itest/pom.xml): Pax Exam integration tests verifying model loading, service registration, and validation in an Apache Karaf container
+
+## Depends on
+
+- [osgi-utils](../../runtime/osgi-utils): OSGi utility library — lifecycle tracking, config monitoring, ranked services
+- [epsilon-runtime](../../tools/epsilon-runtime): Eclipse Epsilon runtime for Maven and OSGi environments
+
+## Used by
+
+- [judo-platform](../../runtime/judo-platform): Model-driven OSGi runtime platform with REST APIs and Karaf deployment
+- [judo-runtime-core](../../runtime/judo-runtime-core): Multi-module runtime engine — data access, business logic, REST, and security
+- [judo-services](../../runtime/judo-services): OSGi runtime services enabling multiple data models in a single Karaf container
+- [judo-tatami](../../runtime/judo-tatami): Model transformation pipeline — ESM/PSM to deployable application artifacts
+- [judo-tatami-base](../../runtime/judo-tatami-base): PSM transformation pipeline — models to schemas, expressions, and configurations
+
+## Optional
+
+- [.github/workflows/build.yml](.github/workflows/build.yml): Main CI build pipeline
+- [LICENSE.txt](LICENSE.txt): Eclipse Public License 2.0 license text
