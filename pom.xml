@@ -116,6 +116,9 @@
 		<sonar.java.source>${java.version}</sonar.java.source>
 		<jacoco.version>0.8.12</jacoco.version>
 
+		<!-- Zeta validation framework -->
+		<judo-zeta-version>1.0.0-SNAPSHOT</judo-zeta-version>
+
 	</properties>
 
 	<repositories>
@@ -780,6 +783,23 @@
 				<groupId>ch.qos.logback</groupId>
 				<artifactId>logback-classic</artifactId>
 				<version>${logback-version}</version>
+			</dependency>
+
+			<!-- Zeta validation framework -->
+			<dependency>
+				<groupId>hu.blackbelt.judo.zeta</groupId>
+				<artifactId>hu.blackbelt.judo.zeta.annotations</artifactId>
+				<version>${judo-zeta-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>hu.blackbelt.judo.zeta</groupId>
+				<artifactId>hu.blackbelt.judo.zeta.common</artifactId>
+				<version>${judo-zeta-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>hu.blackbelt.judo.zeta</groupId>
+				<artifactId>hu.blackbelt.judo.zeta.validation-core</artifactId>
+				<version>${judo-zeta-version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
