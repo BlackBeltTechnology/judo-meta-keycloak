@@ -1,180 +1,179 @@
-<!-- OPENSPEC:START -->
-# OpenSpec Instructions
-
-These instructions are for AI assistants working in this project.
-
-Always open `@/openspec/AGENTS.md` when the request:
-- Mentions planning or proposals (words like proposal, spec, change, plan)
-- Introduces new capabilities, breaking changes, architecture shifts, or big performance/security work
-- Sounds ambiguous and you need the authoritative spec before coding
-
-Use `@/openspec/AGENTS.md` to learn:
-- How to create and apply change proposals
-- Spec format and conventions
-- Project structure and guidelines
-
-Keep this managed block so 'openspec update' can refresh the instructions.
-
-<!-- OPENSPEC:END -->
-
-# Judo Keycloak Meta - Project Documentation
+# judo-meta-keycloak - Project Documentation
 
 ## Project Overview
+
 
 **Repository:** BlackBeltTechnology/judo-meta-keycloak
 **License:** Eclipse Public License 2.0 (EPL-2.0)
 **Java Version:** 21
-**Build System:** Maven 3.9.4+ with Tycho (Eclipse build tooling)
+**Build System:** Maven 3.8.7+ with Eclipse Tycho 4.0.13
 
-This is an Eclipse/Tycho-based metamodel project that:
-1. **Defines** a Keycloak configuration metamodel via EMF/Ecore
-2. **Generates** Java code from the model using MWE2 workflows
-3. **Provides** both Eclipse UI and OSGi standalone runtime
-4. **Exports** Keycloak configurations from model definitions
-5. **Distributes** via both Maven Central and Eclipse P2 repositories
+1. Defines an **Ecore metamodel** for Keycloak realm configurations (realms, clients, users, credentials, attribute bindings)
+2. Generates **EMF Java code** (interfaces, implementations, builders) from the metamodel via MWE2 workflows
+3. Provides **runtime utilities** for model querying (`KeycloakUtils`), JSON serialization (`KeycloakObjectMapper`, `KeycloakConfigurationExporter`), and Epsilon EVL validation (`KeycloakEpsilonValidator`)
+4. Packages the model as both an **Eclipse plugin** (P2 update site) and a **standalone OSGi bundle** (with automatic model discovery via `KeycloakModelBundleTracker`)
+5. Part of the **Judo framework** ecosystem for model-driven application development
+
+## Code Instructions
+
+1. First think through the problem, read the codebase for relevant files.
+2. Before you make any major changes, check in with me and I will verify the plan.
+3. Please every step of the way just give me a high level explanation of what changes you made.
+4. Make every task and code change you do as simple as possible. We want to avoid making any massive or complex changes. Every change should impact as little code as possible. Everything is about simplicity.
+5. Maintain a documentation file that describes how the architecture of the app works inside and out.
+6. Never speculate about code you have not opened. If the user references a specific file, you MUST read the file before answering. Make sure to investigate and read relevant files BEFORE answering questions about the codebase. Never make any claims about code before investigating unless you are certain of the correct answer - give grounded and hallucination-free answers.
+7. For implementation use TDD (Test-Driven Development): write or update tests first to define the expected behaviour, verify they fail, then write the minimal implementation to make them pass.
+8. Use DRY (Don't Repeat Yourself): extract reusable logic into separate classes, utilities, or components. If the same pattern appears in multiple places, refactor it into a shared helper.
 
 ## Directory Structure
 
 ```
 judo-meta-keycloak/
-├── model/                          # Core Keycloak metamodel (Ecore)
-│   ├── src/main/epsilon/           # EVL validation scripts
-│   └── src/main/java/              # Java validation framework
-├── model-test/                     # Unit tests for metamodel
-├── osgi/                           # OSGi bundle repackaging
-├── osgi-itest/                     # OSGi integration tests (Pax Exam)
-├── feature/                        # Eclipse feature (model)
-├── site/                           # Eclipse P2 update site
-├── targetdefinition/               # P2 repository definitions
-├── docs/                           # Documentation
-│   └── validation/                 # Validation framework docs
-└── openspec/                       # OpenSpec change management
+├── model/                    # Core Eclipse plugin — metamodel + runtime
+│   ├── model/                # keycloak.ecore, keycloak.genmodel
+│   ├── src/main/java/        # Hand-written runtime classes
+│   ├── src/main/epsilon/     # EVL validation scripts
+│   ├── src/workflow/          # MWE2 code generation workflow
+│   └── src-gen/              # Generated EMF code (do NOT edit)
+├── model-test/               # JUnit 5 unit tests
+├── osgi/                     # OSGi bundle repackaging
+├── osgi-itest/               # Pax Exam integration tests (Karaf)
+├── feature/                  # Eclipse feature definition
+├── site/                     # Eclipse P2 update site
+├── .github/workflows/        # CI/CD pipelines
+└── openspec/                 # OpenSpec configuration and specs
 ```
 
-## Keycloak Metamodel
+## Core Modules
 
-The core metamodel (`model/model/keycloak.ecore`) defines:
+### Model Layer
 
-| EClass | Purpose |
-|--------|---------|
-| `Realm` | Keycloak realm configuration (contains clients and users) |
-| `Client` | Application/actor configuration |
-| `User` | User account configuration |
-| `UserCredential` | User credentials (password, etc.) |
-| `AttributeBinding` | Mapping of actor attributes to Keycloak attributes |
+| Module | Type | Purpose |
+|--------|------|---------|
+| `model/` | Eclipse plugin (Tycho) | Ecore metamodel definition, EMF-generated Java code (interfaces, impls, factory, package), and hand-written runtime classes for validation, JSON export, and Jackson deserialization |
 
-## Validation Framework
+### Distribution Layer
 
-The project supports **dual validation** with both EVL and Java validators running in parallel.
+| Module | Type | Purpose |
+|--------|------|---------|
+| `osgi/` | OSGi bundle (Felix) | Standalone bundle for Karaf/non-Eclipse environments. Embeds Epsilon validation rules and provides `KeycloakModelBundleTracker` for automatic model discovery from bundle manifest headers |
+| `feature/` | Eclipse feature | Installable feature for Eclipse IDE |
+| `site/` | Eclipse repository | P2 update site for "Install New Software" |
 
-### EVL Validation
-- Location: `model/src/main/epsilon/validations/keycloak*.evl`
-- Entry point: `KeycloakEpsilonValidator.validateKeycloak()`
+### Test Layer
 
-### Java Validation (Zeta Framework)
-- Location: `model/src/main/java/hu/blackbelt/judo/meta/keycloak/validation/`
-- Entry point: `KeycloakValidator.validateKeycloak()`
-- Uses [Zeta Validation Framework](https://github.com/BlackBeltTechnology/judo-zeta)
-
-### Key Validation Classes
-
-| Class | Purpose |
-|-------|---------|
-| `KeycloakValidator` | Entry point for Java validation |
-| `KeycloakValidationConstants` | Constraint names and message templates |
-| `KeycloakValidations` | Validation rules with @Constraint/@Critique annotations |
-| `KeycloakValidationException` | Exception for validation failures |
-
-### Validation Rules
-
-| Constraint | Target | Severity |
-|------------|--------|----------|
-| `RealmNameNotEmpty` | Realm | ERROR |
-| `RealmIdNotEmpty` | Realm | ERROR |
-| `ClientIdNotEmpty` | Client | ERROR |
-| `ClientInternalIdNotEmpty` | Client | ERROR |
-| `ClientNameNotEmpty` | Client | WARNING |
-| `UserUsernameNotEmpty` | User | ERROR |
-| `UserEmailValidFormat` | User | WARNING |
-| `UserCredentialTypeNotEmpty` | UserCredential | ERROR |
-| `UserCredentialValueNotEmpty` | UserCredential | ERROR |
-| `AttributeBindingNameNotEmpty` | AttributeBinding | ERROR |
+| Module | Type | Purpose |
+|--------|------|---------|
+| `model-test/` | JAR (JUnit 5) | Unit tests for KeycloakUtils, KeycloakConfigurationExporter, KeycloakEpsilonValidator, and model execution context |
+| `osgi-itest/` | JAR (Pax Exam) | Integration tests verifying model loading, service registration, and validation in an Apache Karaf container |
 
 ## Technology Stack
 
 ### Core Technologies
-- **Eclipse Modeling Framework (EMF)** 2.38.0+ - Metamodel foundation
-- **Ecore** - Model definition language
-- **MWE2** (Model Workflow Engine) 2.13.0 - Code generation workflows
-- **Epsilon** 2.8.0 - Model validation (EVL)
-- **Tycho** 4.0.13 - Eclipse plugin build
-- **Zeta** 1.0.0-SNAPSHOT - Java validation framework
+- **Eclipse EMF** 2.38.0 — Ecore metamodel framework (model definition, code generation)
+- **Eclipse Tycho** 4.0.13 — Maven plugin for building Eclipse plugins, features, and P2 sites
+- **Epsilon Runtime** 2.8.0 — EVL (Epsilon Validation Language) for model constraint checking
+- **Jackson** 2.17.2 — JSON serialization/deserialization with custom EList support
+- **OSGi Core** 7.0.0 — Service component model for bundle lifecycle
+- **Apache Karaf** 4.4.7 — OSGi container for runtime deployment
+- **Lombok** 1.18.34 — Annotation processing (non-Eclipse modules only)
 
-### Runtime
-- **Apache Karaf** 4.4.7 - OSGi container
-- **Apache Felix** 6.0.0 - OSGi bundle plugin
-- **Pax Exam** 4.13.5 - OSGi testing
+### Build & Quality
+- **Maven** 3.8.7+ with `./mvnw` wrapper
+- **JUnit 5** (Jupiter) 5.9.1 — Unit testing
+- **Pax Exam** 4.13.5 — OSGi integration testing
+- **JaCoCo** 0.8.12 — Code coverage
+- **SonarQube** — Static analysis (Maven plugin 3.9.1)
+- **Flatten Maven Plugin** 1.3.0 — CI-friendly `${revision}` version resolution
 
 ## Build Commands
 
 ```bash
-# Standard build
-mvn clean install
-# or with wrapper
+# Full build (code generation + compile + test)
 ./mvnw clean install
 
-# Run tests
-mvn test
+# Skip tests
+./mvnw clean install -DskipTests
 
-# Run performance tests
-mvn test -Dtest=KeycloakValidationPerformanceTest -Dperformance.test=true
+# Run a single test class
+./mvnw test -pl model-test -Dtest=KeycloakUtilsTest
+
+# Full verification with OSGi integration tests
+./mvnw clean verify
+
+# Update target definition P2 URLs after dependency version changes
+./mvnw clean install -P update-target-versions -f targetdefinition/pom.xml
+
+# Update site category P2 URLs
+./mvnw clean install -P update-category-versions -f site/pom.xml
 ```
 
-## Testing
+### Maven Profiles
 
-### Parametrized Validation Tests
+| Profile | Purpose |
+|---------|---------|
+| `modules` | Active by default. Includes all submodules. Disable with `-DskipModules=true`. |
+| `sign-artifacts` | GPG-signs artifacts for release. Requires GPG key in settings.xml. |
+| `release-dummy` | Test deployment to `/tmp`. |
+| `release-judong` | Deploy to Judong Nexus repository. |
+| `release-central` | Deploy to Maven Central via Sonatype OSSRH. |
+| `update-target-versions` | Update Eclipse target definition P2 repository URLs. |
+| `update-category-versions` | Update site category P2 repository URLs. |
+| `generate-github-asciidoc-diagrams` | Generate PlantUML diagrams from AsciiDoc. |
+| `update-source-code-license` | Update EPL-2.0 license headers on source files. |
 
-Tests run with both EVL and Java validators using `@EnumSource(ValidatorType.class)`:
+## Key Configuration Files
 
-```java
-@ParameterizedTest(name = "testRealmNameNotEmpty [{0}]")
-@EnumSource(ValidatorType.class)
-void testRealmNameNotEmpty(ValidatorType type) throws Exception {
-    this.validatorType = type;
-    initModel();
-    // ... test code
-    runValidation(expectedErrors, expectedWarnings);
-}
-```
-
-### Test Classes
-
-| Class | Purpose |
-|-------|---------|
-| `AbstractKeycloakValidationTest` | Base class with validation infrastructure |
-| `KeycloakValidationTest` | Parametrized validation tests |
-| `KeycloakValidationPerformanceTest` | Performance benchmarks |
-| `ValidatorType` | Enum for selecting EVL or JAVA validator |
+| File | Purpose |
+|------|---------|
+| `pom.xml` | Parent POM with dependency management, plugin management, and all profiles |
+| `model/model/keycloak.ecore` | Ecore metamodel defining Realm, Client, User, UserCredential, AttributeBinding |
+| `model/model/keycloak.genmodel` | EMF GenModel controlling Java code generation parameters |
+| `model/src/workflow/generateModel.mwe2` | MWE2 workflow orchestrating EMF code generation (EcoreGenerator, HelperGenerator, BuilderGenerator, RuntimeModelGenerator) |
+| `model/src/main/epsilon/validations/keycloak.evl` | Epsilon validation constraints for model integrity |
+| `model/META-INF/MANIFEST.MF` | Eclipse plugin manifest with exported packages and dependencies |
+| `osgi/bnd.bnd` or `pom.xml` bundle config | OSGi bundle manifest instructions (Felix Maven Bundle Plugin) |
+| `logback-test.xml` | Logback configuration for test execution |
 
 ## Development Environment
 
 **Required:**
 - Java 21 JDK
-- Maven 3.9.4+
-- Eclipse IDE with:
-  - m2e (Maven integration)
-  - Epsilon plugin
-  - Modeling tools
+- Maven 3.8.7+ (or use `./mvnw`)
+- BlackBelt Nexus credentials configured in Maven `settings.xml`
+
+**For Eclipse IDE development:**
+- m2e plugin
+- Epsilon plugin
+- XText, MWE2 plugins
+- Eclipse Modeling Tools
+
+**Code generation in Eclipse:**
+Right-click `model/src/workflow/generateModel.mwe2` → Run As → MWE2 Workflow
 
 ## Git Workflow
 
 - **Main Branch:** `develop`
-- **Versioning:** SNAPSHOT-based development (currently 1.0.1-SNAPSHOT)
+- **Release Branch:** `master` (latest stable release)
+- **Versioning:** `1.0.1-SNAPSHOT` (Maven) / `1.0.1.qualifier` (Eclipse)
+- **Feature branches:** `feature/JNG-NUMBER_summary` from `develop`
+- **Bugfix branches:** `bugfix/JNG-NUMBER_summary` from release branches
+- **Hotfix branches:** `hotfix/JNG-NUMBER_summary` from `master`
+- **Rule:** Every commit must reference a Jira ticket (`JNG-xxx`)
+- CI builds append branch metadata to versions (e.g., `1.0.1.develop_40`)
+
+## Important Notes
+
+1. **Never edit `src-gen/` files** — they are regenerated by the MWE2 workflow on every build. All hand-written code belongs in `src/main/java/`.
+2. **Tycho surefire `argLine` must stay on one line** — the `<argLine>` element in the parent pom.xml tycho-surefire-plugin config will break if auto-formatted across multiple lines.
+3. **Lombok cannot be used in Eclipse plugin modules** — Tycho does not support Lombok annotation processing. Lombok is only used in standard JAR modules (tests).
+4. **Version duality** — Maven uses `-SNAPSHOT` while Eclipse uses `.qualifier`. The Flatten Maven Plugin and Tycho Versions Plugin handle conversion automatically; do not manually sync these.
+5. **P2 repository URLs contain hardcoded versions** — Tycho loads repository definitions before Maven property resolution. Use `update-target-versions` and `update-category-versions` profiles after changing dependency versions.
+6. **Nexus credentials required** — Private BlackBelt artifacts require Maven settings.xml with `blackbelt-nexus-mirror` server credentials.
+7. **Jackson EList deserialization** — `KeycloakObjectMapper` uses MixIn classes that extend `*Impl` classes with collection setters, enabling Jackson to deserialize JSON arrays into EMF `EList` collections.
+8. **OSGi model discovery** — Bundles with a `Keycloak-Models` manifest header are automatically discovered by `KeycloakModelBundleTracker` and registered as OSGi services.
 
 ## Related Documentation
 
-- `README.md` - Project overview
-- `docs/validation/README.md` - Validation framework documentation
-- `openspec/AGENTS.md` - OpenSpec workflow for spec-driven development
-- `openspec/project.md` - Project conventions for OpenSpec
-- [Zeta Framework](https://github.com/BlackBeltTechnology/judo-zeta) - Java validation framework
+- [README.md](README.md) — Project overview with architecture diagrams
+- [.github/CIFLOW.md](.github/CIFLOW.md) — Detailed CI/CD workflow and branching strategy documentation
