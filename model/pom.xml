@@ -180,5 +180,12 @@
             <artifactId>jackson-databind</artifactId>
             <scope>provided</scope>
         </dependency>
+
+        <!-- Zeta validation framework -->
+        <dependency>
+            <groupId>hu.blackbelt.judo.zeta</groupId>
+            <artifactId>hu.blackbelt.judo.zeta.validation-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 </project>

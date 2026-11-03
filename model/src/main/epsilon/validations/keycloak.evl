@@ -1,1 +1,75 @@
+// ===== Realm Validations =====
 
+context Realm {
+
+    constraint RealmNameNotEmpty {
+        check: self.realm <> null and self.realm.trim().length() > 0
+        message: "Realm must have a non-empty realm name"
+    }
+
+    constraint RealmIdNotEmpty {
+        check: self.id <> null and self.id.trim().length() > 0
+        message: "Realm must have a non-empty ID"
+    }
+}
+
+// ===== Client Validations =====
+
+context Client {
+
+    constraint ClientIdNotEmpty {
+        check: self.clientId <> null and self.clientId.trim().length() > 0
+        message: "Client must have a non-empty clientId"
+    }
+
+    constraint ClientInternalIdNotEmpty {
+        check: self.id <> null and self.id.trim().length() > 0
+        message: "Client must have a non-empty internal ID"
+    }
+
+    critique ClientNameNotEmpty {
+        check: self.name <> null and self.name.trim().length() > 0
+        message: "Client should have a name for better identification"
+    }
+}
+
+// ===== User Validations =====
+
+context User {
+
+    constraint UserUsernameNotEmpty {
+        check: self.username <> null and self.username.trim().length() > 0
+        message: "User must have a non-empty username"
+    }
+
+    critique UserEmailValidFormat {
+        guard: self.email <> null and self.email.length() > 0
+        check: self.email.matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,}$")
+        message: "User has invalid email format: " + self.email
+    }
+}
+
+// ===== UserCredential Validations =====
+
+context UserCredential {
+
+    constraint UserCredentialTypeNotEmpty {
+        check: self.type <> null and self.type.trim().length() > 0
+        message: "UserCredential must have a type"
+    }
+
+    constraint UserCredentialValueNotEmpty {
+        check: self.value <> null and self.value.trim().length() > 0
+        message: "UserCredential must have a value"
+    }
+}
+
+// ===== AttributeBinding Validations =====
+
+context AttributeBinding {
+
+    constraint AttributeBindingNameNotEmpty {
+        check: self.attributeName <> null and self.attributeName.trim().length() > 0
+        message: "AttributeBinding must have an attributeName"
+    }
+}
