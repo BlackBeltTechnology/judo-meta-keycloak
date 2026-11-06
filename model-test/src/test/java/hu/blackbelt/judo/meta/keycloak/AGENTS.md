@@ -1,0 +1,6 @@
+# `model-test/src/test/java/hu/blackbelt/judo/meta/keycloak` — parameterized harness running each validation case against both validation engines
+
+| File | Purpose |
+|---|---|
+| `AbstractKeycloakValidationTest.java` | Base class letting one test body assert the same constraint set on EVL and Java engines. Exports `initModel()`, `runValidation(expectedErrors, expectedWarnings)`, `getLog()`, fields `keycloakModelSupport`/`keycloakModel`/`validatorType`, constant `MODEL_NAME = "urn:Keycloak.test.model"`. Subclass must set `validatorType` then call `initModel()` before building content, else `runValidation` throws `IllegalArgumentException`. EVL path calls `KeycloakEpsilonValidator` with empty expected lists and derives constraint names from `EvlScriptExecutionException`, so expectations are constraint names only, never `Name\|Message`. |
+| `ValidatorType.java` | Selector feeding `@EnumSource` so parity between the two validation implementations is asserted by every subclass test. Exports constants `EVL` (routes to `KeycloakEpsilonValidator`) and `JAVA` (routes to `KeycloakValidator`). Adding a constant here forces `AbstractKeycloakValidationTest.runValidation` to gain a matching `switch` branch, otherwise it throws `IllegalArgumentException` at run time. |

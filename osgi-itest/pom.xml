@@ -13,12 +13,6 @@
     <description>Judo Keycloak Model OSGI Runtime Integration test</description>
 
     <dependencies>
-        <dependency>
-            <groupId>org.ops4j.pax.tinybundles</groupId>
-            <artifactId>tinybundles</artifactId>
-            <version>3.0.0</version>
-            <scope>test</scope>
-        </dependency>
 
         <dependency>
             <groupId>org.apache.karaf</groupId>
@@ -40,7 +34,9 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <scope>compile</scope>
         </dependency>
+
         <!-- Dependencies for pax exam karaf container -->
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
@@ -75,7 +71,7 @@
         <dependency>
             <groupId>org.ops4j.pax.url</groupId>
             <artifactId>pax-url-aether</artifactId>
-            <version>2.6.2</version>
+            <version>2.6.7</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -91,12 +87,14 @@
             <version>4.13.2</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.hamcrest</artifactId>
             <version>1.3_1</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>hu.blackbelt.judo.meta</groupId>
             <artifactId>hu.blackbelt.judo.meta.keycloak.osgi</artifactId>
@@ -106,15 +104,25 @@
         <dependency>
             <groupId>hu.blackbelt.osgi.utils</groupId>
             <artifactId>osgi-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.emf</groupId>
-            <artifactId>org.eclipse.emf.common</artifactId>
-            <version>2.12.0</version>
             <scope>compile</scope>
         </dependency>
 
+        <!-- Zeta validation framework -->
+        <dependency>
+            <groupId>hu.blackbelt.judo.zeta</groupId>
+            <artifactId>hu.blackbelt.judo.zeta.annotations</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>hu.blackbelt.judo.zeta</groupId>
+            <artifactId>hu.blackbelt.judo.zeta.common</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>hu.blackbelt.judo.zeta</groupId>
+            <artifactId>hu.blackbelt.judo.zeta.validation-core</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

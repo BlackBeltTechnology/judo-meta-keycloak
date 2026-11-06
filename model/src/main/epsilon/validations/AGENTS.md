@@ -1,0 +1,6 @@
+# `model/src/main/epsilon/validations` — EVL constraint scripts defining the declarative half of Keycloak model validation
+
+| File | Purpose |
+|---|---|
+| `keycloak-plugin-validation.evl` | Entry script used when validation runs inside the Eclipse plugin. Imports `keycloak.evl` and, in its `pre` block, instantiates native `hu.blackbelt.judo.meta.keycloak.runtime.KeycloakUtils` over `KEYCLOAK.resource.resourceSet` with `false`. Requires the model to be registered under the model name `KEYCLOAK`, and requires `KeycloakUtils` to keep its `(ResourceSet, boolean)` constructor. |
+| `keycloak.evl` | Rule source of record for realm, client, user, credential, and attribute-binding integrity. `constraint` blocks (`RealmNameNotEmpty`, `RealmIdNotEmpty`, `ClientIdNotEmpty`, `ClientInternalIdNotEmpty`, `UserUsernameNotEmpty`, `UserCredentialTypeNotEmpty`, `UserCredentialValueNotEmpty`, `AttributeBindingNameNotEmpty`) raise errors; `critique` blocks (`ClientNameNotEmpty`, `UserEmailValidFormat`) raise warnings. Names must stay identical to `KeycloakValidationConstants`, since tests compare the two engines by constraint name. `UserEmailValidFormat` is guarded on non-empty email, so a null email never warns. |

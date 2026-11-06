@@ -27,6 +27,7 @@ import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator;
 import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel;
 import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.KeycloakValidationException;
 import hu.blackbelt.judo.meta.keycloak.runtime.KeycloakModel.SaveArguments;
+import hu.blackbelt.judo.meta.keycloak.validation.KeycloakValidator;
 import hu.blackbelt.osgi.utils.osgi.api.BundleTrackerManager;
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.emf.common.util.URI;
@@ -44,6 +45,7 @@ import org.osgi.service.log.LogService;
 import javax.inject.Inject;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.util.Collections;
 
 import static hu.blackbelt.judo.meta.keycloak.osgi.itest.KarafFeatureProvider.karafConfig;
 import static hu.blackbelt.judo.meta.keycloak.runtime.KeycloakEpsilonValidator.calculateKeycloakValidationScriptURI;
@@ -105,9 +107,19 @@ public class KeycloakModelLoadITest {
     }
 
     @Test
-    public void testModelValidation() throws Exception {
+    public void testEvlModelValidation() throws Exception {
         try (BufferedSlf4jLogger bufferedLogger = new BufferedSlf4jLogger(log)) {
             validateKeycloak(bufferedLogger, keycloakModel, calculateKeycloakValidationScriptURI());
         }
+    }
+
+    @Test
+    public void testZetaModelValidation() throws Exception {
+        KeycloakValidator.validateKeycloak(
+            log,
+            keycloakModel,
+            Collections.emptyList(),
+            Collections.emptyList()
+        );
     }
 }
